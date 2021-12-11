@@ -1,0 +1,18 @@
+{
+  "name": "yt-dlp",
+  "version": "1.0.0",
+  "description": "youtube downloader for chaosc86.ml",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "chaosc86",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "open": "^8.4.0",
+    "socket.io": "^4.4.0"
+  }
+}

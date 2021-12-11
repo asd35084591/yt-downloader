@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yt-dlp</title>
+</head>
+<body>
+    <h1 style="text-align: center;margin: 0;"><a href="/">Youtube下載器</a> | 儲存區</h1>
+    <ul>
+        <ul id="audio">
+            <h1>音樂 : </h1>
+        </ul>
+        <ul id="video">
+            <h1>影片 : </h1>
+        </ul>
+        <% list.forEach(function(item,index){ %>
+            <% if (item.folder =="audio") {%>
+                <li class="audio"><a href="<%= item.fullpath %>"> <%= item.name %> </a></li>
+            <% } else { %>
+                <li class="video"><a href="<%= item.fullpath %>"> <%= item.name %> </a></li>     
+            <% } %>
+        <% }) %>
+    </ul>
+</body>
+<script src="http://localhost:9999/socket.io/socket.io.js"></script>
+<script>
+    const socket = io("http://localhost:9999/");
+    socket.on('message', function(data){
+  console.log(data.message);
+});
+socket.on("reloadreq",(data)=>{
+location.reload()
+})
+
+let appendelements = (...name)=>{
+    for(let i = 0; i < name.length ; i++){
+        let elements = document.getElementsByClassName(name[i])
+        for(let j = 0; j < elements.length ; j++){
+            document.getElementById(name[i]).append(elements[j])
+        }
+    };
+}
+appendelements("audio","video");
+</script>
+</html>
