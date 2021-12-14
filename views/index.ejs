@@ -40,9 +40,9 @@
 <div id="log" style="text-align: center;"></div>
 
 </body>
-<script src="http://localhost:9999/socket.io/socket.io.js"></script>
+<script src="http://localhost:<%= port %>/socket.io/socket.io.js"></script>
 <script>
-    const socket = io("http://localhost:9999/");
+    const socket = io("http://localhost:<%= port %>/");
     socket.on('message', function(data){
   console.log(data.message);
 });
