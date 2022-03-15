@@ -33,8 +33,8 @@ io.sockets.on('connection', function(socket) {
     socket.emit('message', {'message': 'hello world'});
     socket.on("geturl",(data)=>{
         //console.log(data.list,data.format,data.url)
-        let args = ["-4","--continue",`${data.list}`,"--embed-thumbnail","--newline","--embed-subs",'--embed-metadata',"-N 8",`-f ${data.format}`,"-P public/video/","-o %(title)s.%(ext)s",data.url]
-        if(data.format=="ba") args = ["-4","--continue",`${data.list}`,"--newline","-N 8",`-f ${data.format}`,"-P public/audio/","-o %(title)s.%(ext)s",data.url]
+        let args = ["-4","--continue",`${data.list}`,"--embed-thumbnail","--newline","--embed-subs","--all-subs",'--embed-metadata',"-N 8",`-f ${data.format}`,"-P public/video/","-o %(title)s.%(ext)s",data.url]
+        if(data.format=="ba") args = ["-4","--continue",`${data.list}`,"--newline","--embed-subs","--all-subs",'--embed-metadata',"-N 8",`-f ${data.format}`,"-P public/audio/","-o %(title)s.%(ext)s",data.url]
         cp.execFile(yt_dlp,args,async (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error}`)
@@ -65,8 +65,8 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
 }
 
 const ytdlp =(url,format,playlist)=>{
-    let args = ["-4","--continue",`${playlist}`,"--embed-thumbnail",'--embed-metadata',"-N 8",`-f ${format}`,"-P public/video/","-o %(title)s.%(ext)s",url]
-    if(format=="ba") args = ["-4","--continue",`${playlist}`,"-N 8",`-f ${format}`,"-P public/audio/","-o %(title)s.%(ext)s",url]
+    let args = ["-4","--continue",`${playlist}`,"--embed-thumbnail","--embed-subs","--all-subs",'--embed-metadata',"-N 8",`-f ${format}`,"-P public/video/","-o %(title)s.%(ext)s",url]
+    if(format=="ba") args = ["-4","--continue",`${playlist}`,"--embed-subs","--all-subs",'--embed-metadata',"-N 8",`-f ${format}`,"-P public/audio/","-o %(title)s.%(ext)s",url]
         let res = cp.execFile(yt_dlp,args, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error}`)
