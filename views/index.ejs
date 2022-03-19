@@ -37,12 +37,14 @@
     <br>
     <input class="button-75" type="button" onclick="sendreq()" value="下載">
 </form>
-<div id="log" style="text-align: center;"></div>
-
+<div id="log" style="text-align: center;">
+    <p id="stdout"></p>
+    <p id="stderr"></p>
+</div>
 </body>
-<script src="http://localhost:<%= port %>/socket.io/socket.io.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script>
-    const socket = io("http://localhost:<%= port %>/");
+    const socket = io(/*"http://localhost:<%= port %>/"*/);
     socket.on('message', function(data){
   console.log(data.message);
 });
@@ -52,26 +54,24 @@ socket.on("fromurl",(data)=>{
 })
 
 const appenddata = (data)=>{
-    document.getElementById("log").innerHTML = "";
-    //error
-    err = document.createElement("p")
-    err.innerText = data.error?.cmd
-    err.style.backgroundColor = "red"
     //stdout
-    stdout = document.createElement("p")
-    stdout.innerText = data.stdout
+    document.getElementById("stdout")===null?stdout = document.createElement("p"): stdout = document.getElementById("stdout")
+    let stdouttext = document.createTextNode(data.stdout)
+    document.getElementById("stdout").append(stdouttext,document.createElement("br"))
     stdout.style.backgroundColor = "green"
     //stderr
-    stderr = document.createElement("p")
-    stderr.innerText = data.stderr
+    document.getElementById("stderr")===null?stderr = document.createElement("p"): stderr = document.getElementById("stderr")
+    let stderrtext = document.createTextNode(data.stderr)
+    data.stderr===undefined?"":stderr.append(stderrtext,document.createElement("br"))
     stderr.style.backgroundColor = "red"
-    document.getElementById("log").append(/*err,*/stdout,stderr)
 } 
 const url = document.getElementById("link");
 const sendreq = ()=>{  
     let videoformat = getradiovalue("videoformat");
     let playlistvideo = getradiovalue("playlist");
     let res = socket.emit("geturl", {'url': url.value,"format":videoformat,"list":playlistvideo});
+    document.getElementById("stdout").innerHTML = "";
+    document.getElementById("stderr").innerHTML = "";
     /*let data = await fetch(`video?url=${url.value}&format=${videoformat}&list=${playlistvideo}`);
     let res = await data.text;*/
     }
