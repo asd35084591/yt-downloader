@@ -38,8 +38,11 @@
     <input class="button-75" type="button" onclick="sendreq()" value="下載">
 </form>
 <div id="log" style="text-align: center;">
+    <h1 style="color: greenyellow;">Stdout</h1>
     <p id="stdout"></p>
+    <h1 style="color: red;">Stderr</h1>
     <p id="stderr"></p>
+    <br>
 </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
@@ -66,7 +69,9 @@ const appenddata = (data)=>{
     stderr.style.backgroundColor = "red"
 } 
 const url = document.getElementById("link");
-const sendreq = ()=>{  
+const sendreq = ()=>{
+    let urlreg = new RegExp(/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/).test(url.value)
+    if(urlreg===false) {return alert("這不是一個youtube link!")}
     let videoformat = getradiovalue("videoformat");
     let playlistvideo = getradiovalue("playlist");
     let res = socket.emit("geturl", {'url': url.value,"format":videoformat,"list":playlistvideo});
