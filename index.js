@@ -39,7 +39,7 @@ io.sockets.on('connection', function(socket) {
     if(data.format=="ba") args = ["-4","--continue",`${data.list}`,"--newline","--embed-subs","--all-subs",'--embed-metadata',"-N 8",`-f ${data.format}`,"-P public/audio/","-o %(title)s.%(ext)s",data.url]
     let ytDlpEventEmitter = ytDlpWrap
     .exec(args)
-    .on('progress', (progress) => socket.emit('fromurl',{"stdout":`${progress?.percent}% ${progress?.totalSize} ${progress.currentSpeed===undefined?"":progress.currentSpeed} ${progress.eta===undefined?"":progress.eta}`})
+    .on('progress', (progress) => socket.emit('fromurl',{"stdout":`${progress.percent}% ${progress.totalSize} ${progress.currentSpeed===undefined?"":progress.currentSpeed} ${progress.eta===undefined?"":progress.eta}`})
     )
     .on('ytDlpEvent', (eventType, eventData) =>socket.emit('fromurl',{"stdout":`${eventType} ${eventData}`})
     )
