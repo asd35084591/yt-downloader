@@ -53,6 +53,7 @@
 });
 socket.on("fromurl",(data)=>{
         console.log(data)
+        if(data.stdout==="done") alert("Success !!")
         appenddata(data)
 })
 
