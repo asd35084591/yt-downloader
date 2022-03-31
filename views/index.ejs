@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/style.css">
     <title>yt-dlp</title>
 </head>
 <body>
@@ -18,6 +19,8 @@
 <hr>
     <div class="radiodd">
         <label>影片格式:</label>
+        <input type="radio" id="thumbnail" name="videoformat" value="--write-thumbnail --skip-download">
+        <label for="thumbnail">下載封面(只下載封面)</label>
         <input type="radio" id="b" name="videoformat" value="b" checked>
         <label for="b">影片及音樂(推薦)</label>
         <input type="radio" id="bv" name="videoformat" value="bv">
@@ -26,6 +29,8 @@
         <label for="ba">只有音樂</label>
         <input type="radio" id="bv&ba" name="videoformat" value="bestvideo+bestaudio">
         <label for="bv&ba">最好的影片及音樂</label>
+        <input type="checkbox" id="subtitle" name="subtitle" value="--write-subs">
+        <label for="subtitle">保存字幕(如果有)</label>
     </div>
     <br>
     <div class="radiodd">
@@ -35,8 +40,20 @@
         <label for="yes">合籍</label>
     </div>
     <br>
-    <input class="button-75" type="button" onclick="sendreq()" value="下載">
+    <input class="button-75" id="download" type="button" onclick="sendreq()" value="下載">
+    <!--<input class="button-75" id="sub" type="button" onclick="sendreq('candownloadsub')" value="downloadsubs">-->
 </form>
+<div style="visibility: hidden;">
+<input type="checkbox" id="test-downloadThumb">
+<input type="checkbox" id="test-downloadSub">
+<input type="checkbox" id="test-download-audio">
+<input type="checkbox" id="test-embedSub-audio">
+<input type="checkbox" id="test-embedMeta-audio">
+<input type="checkbox" id="test-download-video">
+<input type="checkbox" id="test-embedSub-video">
+<input type="checkbox" id="test-embedMeta-video">
+<input type="checkbox" id="test-embedThumb-video">
+</div>
 <div id="log" style="text-align: center;">
     <h1 style="color: greenyellow;">Stdout</h1>
     <p id="stdout"></p>
@@ -46,214 +63,6 @@
 </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
-<script>
-    const socket = io(/*"http://localhost:<%= port %>/"*/);
-    socket.on('message', function(data){
-  console.log(data.message);
-});
-socket.on("fromurl",(data)=>{
-        console.log(data)
-        if(data.stdout==="done") alert("Success !!")
-        appenddata(data)
-})
-
-const appenddata = (data)=>{
-    //stdout
-    document.getElementById("stdout")===null?stdout = document.createElement("p"): stdout = document.getElementById("stdout")
-    let stdouttext = document.createTextNode(data.stdout)
-    document.getElementById("stdout").append(stdouttext,document.createElement("br"))
-    stdout.style.backgroundColor = "green"
-    //stderr
-    document.getElementById("stderr")===null?stderr = document.createElement("p"): stderr = document.getElementById("stderr")
-    let stderrtext = document.createTextNode(data.stderr)
-    data.stderr===undefined?"":stderr.append(stderrtext,document.createElement("br"))
-    stderr.style.backgroundColor = "red"
-} 
-const url = document.getElementById("link");
-const sendreq = ()=>{
-    let urlreg = new RegExp(/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/).test(url.value)
-    if(urlreg===false) {return alert("這不是一個youtube link!")}
-    let videoformat = getradiovalue("videoformat");
-    let playlistvideo = getradiovalue("playlist");
-    socket.emit("geturl", {'url': url.value,"format":videoformat,"list":playlistvideo});
-    document.getElementById("stdout").innerHTML = "";
-    document.getElementById("stderr").innerHTML = "";
-    }
-const getradiovalue = (name)=>{
-    let list = document.getElementsByName(name);
-    for(let i = 0; i < list.length ; i++){
-        if(list[i].checked){
-            return list[i].value;
-        }
-    }
-}
-</script>
-<style>
-/* override browser default */
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-/* use viewport-relative units to cover page fully */
-body {
-  height: 100vh;
-  width: 100vw;
-}
-
-/* include border and padding in element width and height */
-* {
-  box-sizing: border-box;
-}
-.input-container {
-            width: 70%;
-            position: relative;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: reverse;
-            -ms-flex-flow: column-reverse;
-            flex-flow: column-reverse;
-            -webkit-box-align: start;
-            -ms-flex-align: start;
-            align-items: flex-start;
-            margin: 100px auto;
-        }
-
-        .input-container input {
-            -webkit-box-ordinal-group: 11;
-            order: 10;
-            -ms-flex-order: 10;
-            outline: none;
-            border: none;
-            width: 100%;
-            padding: 10px 0;
-            font-size: 20px;
-            border-bottom: 1px solid #d5d5d5;
-            text-indent: 10px;
-        }
-
-        .input-container input::-moz-placeholder {
-            opacity: 0;
-        }
-
-        .input-container input::-webkit-input-placeholder {
-            opacity: 0;
-        }
-
-        .input-container input:-ms-input-placeholder {
-            opacity: 0;
-        }
-
-        .input-container input, .input-container label {
-            transition: all 0.3s;
-        }
-
-        .input-container label {
-            -webkit-box-ordinal-group: 101;
-            -ms-flex-order: 100;
-            order: 100;
-            color: #3f4f5b;
-            -webkit-transform-origin: left bottom;
-            transform-origin: left bottom;
-            -webkit-transform: translate(10px, 40px);
-            transform: translate(0px, 40px); }
-
-        .input-container .bottom-line {
-            order: 2;
-            width: 0;
-            height: 2px;
-            background: #658db5;
-            transition: all 0.3s;
-        }
-
-        .input-container input:focus {
-            border-bottom-color: #fff;
-        }
-
-        .input-container input:focus ~ div,
-        .input-container input:not(:placeholder-shown) ~ div {
-            width: 100%;
-        }
-
-        .input-container input:focus + label,
-        .input-container input:not(:placeholder-shown) + label {
-            color: #52616c;
-            -webkit-transform: translate(10px) scale(0.9);
-            transform: translate(10px) scale(0.9);
-        }
-/* 單選框 */
-.radiodd input[type="radio"] {
-    display: none;
-}
-.radiodd input[type="radio"] + label {
-    display: inline-block;
-    background-color: #ccc;
-    cursor: pointer;
-    padding: 5px 10px;
-    gap: 5px;
-}
-.radiodd input[type="radio"]:checked + label {
-    background-color: rgb(101, 168, 0);
-    color: #fff;
-}
-/* CSS */
-.button-75 {
-  align-items: center;
-  background-image: linear-gradient(135deg, #f34079 40%, #fc894d);
-  border: 0;
-  border-radius: 10px;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  /*display: flex;
-  flex-direction: column;*/
-  font-family: "Codec cold",sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  height: 54px;
-  justify-content: center;
-  letter-spacing: .4px;
-  line-height: 1;
-  max-width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 3px;
-  text-decoration: none;
-  text-transform: uppercase;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-75:active {
-  outline: 0;
-}
-
-.button-75:hover {
-  outline: 0;
-}
-
-.button-75 span {
-  transition: all 200ms;
-}
-
-.button-75:hover span {
-  transform: scale(.9);
-  opacity: .75;
-}
-
-@media screen and (max-width: 991px) {
-  .button-75 {
-    font-size: 15px;
-    height: 50px;
-  }
-
-  .button-75 span {
-    line-height: 50px;
-  }
-}
-</style>
+<script src="/src/socketio.js"defer></script>
+<script src="/src/script.js" defer></script>
 </html>
