@@ -13,5 +13,5 @@ using yt-dlp
 
 Name | Value | Description
 ---|---|---
-ytdlp_path | "ytdlp/yt-dlp.exe" | If you already install ytdlp onto your system you don't have to set it.\nChange ytdlp path from `ytdlp/yt-dlp.exe`#You also need to move ytdlp file there.
+ytdlp_path | "ytdlp/yt-dlp.exe" | If you already install ytdlp onto your system you don't have to set it.<\br>Change ytdlp path from `ytdlp/yt-dlp.exe`#You also need to move ytdlp file there.
 downloadpath | "C://Users/User/Downloads/" | Change the download folder from `public` to `C://Users/User/Downloads/`
