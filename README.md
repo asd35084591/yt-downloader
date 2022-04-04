@@ -3,14 +3,12 @@ using yt-dlp
 
 #Need to have `Node.js` installed#
 
-Running on Windows :
-
 1. Run `npm install`.
-2. Click `啟動.bat`.
-3. Files are saved in the `public` folder.
-
-Running on linux :
-1. follow `https://github.com/yt-dlp/yt-dlp#installation` guides to install yt-dlp onto your linux machine
-2. Run `npm install`.
-3. Edit index.js'`yt-dlp` variable from `yt-dlp/yt-dlp.exe` to `yt-dlp`
-4. Run `node index.js` to run the server
+2. Doubleclick the `start.sh` or type `node ./index.js {port}` to start with a different port.
+3. By default,files are saved in the `public` folder.
+=====================================
+###.env###
+Name | Value | Description
+---|---|---
+ytdlp_path | "ytdlp/yt-dlp.exe" | If you already install ytdlp onto your system you don't have to set it.\nChange ytdlp path from `ytdlp/yt-dlp.exe`#You also need to move ytdlp file there.
+downloadpath | "C://Users/User/Downloads/" | Change the download folder from `public` to `C://Users/User/Downloads/`
