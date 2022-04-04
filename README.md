@@ -6,8 +6,10 @@ using yt-dlp
 1. Run `npm install`.
 2. Doubleclick the `start.sh` or type `node ./index.js {port}` to start with a different port.
 3. By default,files are saved in the `public` folder.
+4. 
 =====================================
 ###.env###
+
 Name | Value | Description
 ---|---|---
 ytdlp_path | "ytdlp/yt-dlp.exe" | If you already install ytdlp onto your system you don't have to set it.\nChange ytdlp path from `ytdlp/yt-dlp.exe`#You also need to move ytdlp file there.
