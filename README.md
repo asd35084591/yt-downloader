@@ -9,7 +9,7 @@ using yt-dlp
 
 =====================================
 
-###.env###
+###.env(Optional)###
 
 Name | Value | Description
 ---|---|---
