@@ -56,7 +56,7 @@ io.sockets.on('connection', function(socket) {
     if(data.subtitle!==undefined){args.push(data.subtitle)}
     if(data.format.split(" ").length!==2 && data.format!=="ba") {args.push("--embed-thumbnail"),args.push(`-P ${downloadpath ||"public/video/"}`),args.push(`-f ${data.format}`)}
     if(data.format.startsWith("ba")) args.push(`-P ${downloadpath ||"public/audio/"}`),args.push(`-f ${data.format}`)
-       if(data.format.split(" ").length===2) {args.push(data.format.split(" ")[0]),args.push(data.format.split(" ")[1]),args.push(`-P ${downloadpath || "public/thumbnail/"}`),args.push("--convert-thumbnails"),args.push("png")}
+    if(data.format.split(" ").length===2) {args.push(data.format.split(" ")[0]),args.push(data.format.split(" ")[1]),args.push(`-P ${downloadpath || "public/thumbnail/"}`),args.push("--convert-thumbnails"),args.push("png")}
 
     let ytDlpEventEmitter = ytDlpWrap
     .exec(args)
