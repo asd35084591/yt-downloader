@@ -47,6 +47,8 @@ io.sockets.on('connection', function(socket) {
     '--embed-metadata',
     "--all-subs",
     "--embed-subs",
+    "--compat-options",
+    "no-live-chat",
     "-N 8",
     "-o %(title)s.%(ext)s",
     data.url
