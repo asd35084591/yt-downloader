@@ -21,16 +21,16 @@
         <label>影片格式:</label>
         <input type="radio" id="thumbnail" name="videoformat" value="--write-thumbnail --skip-download">
         <label for="thumbnail">下載封面(只下載封面)</label>
-        <input type="radio" id="b" name="videoformat" value="b" checked>
+        <input type="radio" id="b" name="videoformat" value="b[ext=mp4]" checked>
         <label for="b">影片及音樂(推薦)</label>
-        <input type="radio" id="bv" name="videoformat" value="bv">
+        <input type="radio" id="bv" name="videoformat" value="bv[ext=mp4]">
         <label for="bv">只有影片</label>
-        <input type="radio" id="ba" name="videoformat" value="ba">
+        <input type="radio" id="ba" name="videoformat" value="ba[ext=m4a]">
         <label for="ba">只有音樂</label>
-        <input type="radio" id="bv&ba" name="videoformat" value="bestvideo+bestaudio">
+        <input type="radio" id="bv&ba" name="videoformat" value="bestvideo[ext=mp4]+bestaudio[ext=m4a]">
         <label for="bv&ba">最好的影片及音樂</label>
         <input type="checkbox" id="subtitle" name="subtitle" value="--write-subs">
-        <label for="subtitle">保存字幕(如果有)</label>
+        <label for="subtitle">下載字幕(如果有)</label>
     </div>
     <br>
     <div class="radiodd">
@@ -40,8 +40,7 @@
         <label for="yes">合籍</label>
     </div>
     <br>
-    <input class="button-75" id="download" type="button" onclick="sendreq()" value="下載">
-    <!--<input class="button-75" id="sub" type="button" onclick="sendreq('candownloadsub')" value="downloadsubs">-->
+    <input class="button-75" id="download" type="button" value="下載">
 </form>
 <div style="visibility: hidden;">
 <input type="checkbox" id="test-downloadThumb">
