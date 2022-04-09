@@ -4,7 +4,7 @@ using yt-dlp
 <div style="font-weight:bold;">
 
 * [Requirements](#Requirements)
-   * [Node.js](#Node.js)
+   * [Node.js](#Nodejs)
    * [ffmpeg](#ffmpeg)
       * [Windows](#Windows)
       * [Linux](#Linux)
@@ -13,7 +13,7 @@ using yt-dlp
 <hr>
 
 ## Requirements
-## [Node.js](https://nodejs.org/en/download/)
+## [Nodejs](https://nodejs.org/en/download/)
 
 ## [ffmpeg](https://github.com/BtbN/FFmpeg-Builds/releases)
   ## Windows
