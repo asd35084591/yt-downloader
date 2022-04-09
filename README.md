@@ -16,7 +16,7 @@ using yt-dlp
 
 ## [ffmpeg](https://github.com/BtbN/FFmpeg-Builds/releases)
   ## Windows
-  Download the zip file ,extract it and set the `bin/` directory to system's environment variables
+  Download the zip file ,extract it and set the `ffmpeg/bin` directory to system's environment variables
 
   ## Linux
   Use your packages manager to download, i.e., `sudo apt install ffmpeg`
