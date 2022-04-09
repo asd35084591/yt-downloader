@@ -8,7 +8,6 @@ using yt-dlp
    * [ffmpeg](#ffmpeg)
       * [Windows](#Windows)
       * [Linux](#Linux)
-  
 </div>
 <hr>
 
@@ -26,7 +25,7 @@ using yt-dlp
 
 =====================================
 1. Run `npm install`.
-2. Doubleclick the `start.sh` or type `node ./index.js {port}` to start with a different port.
+2. Doubleclick the `start.sh` or type `node ./index.js | {port}` to start or start with a different port.
 3. By default,files are saved in the `public` folder.
 
 =====================================
