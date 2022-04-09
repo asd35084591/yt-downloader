@@ -12,13 +12,13 @@ using yt-dlp
 <hr>
 
 ## Requirements
-## [Nodejs](https://nodejs.org/en/download/)
+### [Nodejs](https://nodejs.org/en/download/)
 
-## [ffmpeg](https://github.com/BtbN/FFmpeg-Builds/releases)
-  ## Windows
+### [ffmpeg](https://github.com/BtbN/FFmpeg-Builds/releases)
+  #### Windows
   Download the zip file ,extract it and set the `ffmpeg/bin` directory to system's environment variables
 
-  ## Linux
+  #### Linux
   Use your packages manager to download, i.e., `sudo apt install ffmpeg`
 
 <hr>
@@ -30,7 +30,7 @@ using yt-dlp
 
 =====================================
 
-### .env(Optional) ###
+## .env(Optional) ###
 
 Name | Value | Description
 ---|---|---
