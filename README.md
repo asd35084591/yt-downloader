@@ -8,14 +8,11 @@ using yt-dlp
    * [ffmpeg](#ffmpeg)
       * [Windows](#Windows)
       * [Linux](#Linux)
-* [Number](#Number)
-    * [0亮1不亮](#Number-0亮1不亮)
-    * [1亮0不亮](#Number-1亮0不亮)
-
+  
 </div>
 <hr>
 
-##Requirements
+## Requirements
 ## [Node.js](https://nodejs.org/en/download/)
 
 ## [ffmpeg](https://github.com/BtbN/FFmpeg-Builds/releases)
@@ -34,7 +31,7 @@ using yt-dlp
 
 =====================================
 
-###.env(Optional)###
+### .env(Optional) ###
 
 Name | Value | Description
 ---|---|---
