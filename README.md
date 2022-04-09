@@ -13,6 +13,7 @@ using yt-dlp
     * [1亮0不亮](#Number-1亮0不亮)
 
 </div>
+<hr>
 
 ##Requirements
 ## [Node.js](https://nodejs.org/en/download/)
@@ -25,11 +26,12 @@ using yt-dlp
   Use your packages manager to download, i.e., `sudo apt install ffmpeg`
 
 <hr>
+
 =====================================
 1. Run `npm install`.
 2. Doubleclick the `start.sh` or type `node ./index.js {port}` to start with a different port.
 3. By default,files are saved in the `public` folder.
-4. 
+
 =====================================
 
 ###.env(Optional)###
