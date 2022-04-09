@@ -24,11 +24,12 @@ using yt-dlp
   ## Linux
   Use your packages manager to download, i.e., `sudo apt install ffmpeg`
 
-
+<hr>
 =====================================
 1. Run `npm install`.
 2. Doubleclick the `start.sh` or type `node ./index.js {port}` to start with a different port.
 3. By default,files are saved in the `public` folder.
+4. 
 =====================================
 
 ###.env(Optional)###
