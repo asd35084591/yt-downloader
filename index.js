@@ -16,7 +16,7 @@ fs.access(process.env.ytdlp_path || (os.platform()==="linux"?"yt-dlp":"yt-dlp.ex
     }
     //file exists
   })
-const yt_dlp = process.env.ytdlp_path || (os.platform()==="linux"?"yt-dlp":"yt-dlp.exe")
+const yt_dlp = process.env.ytdlp_path || (os.platform()==="linux"?"./yt-dlp":"./yt-dlp.exe")
 const downloadpath =process.env.downloadpath
 const ytDlpWrap = new YTDlpWrap(yt_dlp);
 open(`http://localhost:${process.argv[2] || process.env.PORT ||  9999}`);
