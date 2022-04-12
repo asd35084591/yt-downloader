@@ -33,7 +33,7 @@ app.get("/",async(req,res)=>{
 app.get("/log",async(req,res)=>{
     datalist = []
     let data =await getAllFiles("public",datalist)
-        res.render("log",{list:data/*,port:process.argv[2] || process.env.PORT ||  9999*/})
+        res.render("log",{list:data,port:process.argv[2] || process.env.PORT ||  9999})
 })
 
 io.sockets.on('connection', function(socket) {
