@@ -1,9 +1,9 @@
 const socket = io(/*"http://localhost:<%= port %>/"*/);
     socket.on('message', function(data){
-    console.log(data.message);
+    //console.log(data.message);
 });
 socket.on("fromurl",(data)=>{
-        console.log(data)
+        //console.log(data)
         if(data.stdout==="done") alert("Success !!")
         if(data.stdout1 === "info" && data.stdout2.includes("Writing video thumbnail")) document.getElementById("test-downloadThumb").checked = true
         if(data.stdout1 === "download"&& data.stdout2.includes("vtt") &&(data.stdout2.includes("Destination")||data.stdout2.includes("has already"))) document.getElementById("test-downloadSub").checked = true
