@@ -1,67 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/style.css">
-    <title>yt-dlp</title>
-</head>
-<body>
-    <h1 style="text-align: center;margin: 0;">Youtube下載器 | <a href="log">儲存區</a></h1>
-    <form style="height: 50%;width: 100%;text-align: center;align-items: center;">
-        <div class="input-container">
-    <input id="link" type="url" placeholder="https://youtube.com" required>
-    <label for="input">連結:
-    </label>
-    <div class="bottom-line"></div>
-</div>
-<hr>
-    <div class="radiodd">
-        <label>影片格式:</label>
-        <input type="radio" id="thumbnail" name="videoformat" value="--write-thumbnail --skip-download">
-        <label for="thumbnail">下載封面(只下載封面)</label>
-        <input type="radio" id="b" name="videoformat" value="b[ext=mp4]" checked>
-        <label for="b">影片及音樂(推薦)</label>
-        <input type="radio" id="bv" name="videoformat" value="bv[ext=mp4]">
-        <label for="bv">只有影片</label>
-        <input type="radio" id="ba" name="videoformat" value="ba[ext=m4a]">
-        <label for="ba">只有音樂</label>
-        <input type="radio" id="bv&ba" name="videoformat" value="bestvideo[ext=mp4]+bestaudio[ext=m4a]">
-        <label for="bv&ba">最好的影片及音樂</label>
-        <input type="checkbox" id="subtitle" name="subtitle" value="--write-subs">
-        <label for="subtitle">下載字幕(如果有)</label>
-    </div>
-    <br>
-    <div class="radiodd">
-        <input type="radio" id="no" name="playlist" value="--no-playlist" checked>
-        <label for="no">影片</label>
-        <input type="radio" id="yes" name="playlist" value="--yes-playlist">
-        <label for="yes">合籍</label>
-    </div>
-    <br>
-    <input class="button-75" id="download" type="button" value="下載">
-</form>
-<div style="visibility: hidden;">
-<input type="checkbox" id="test-downloadThumb">
-<input type="checkbox" id="test-downloadSub">
-<input type="checkbox" id="test-download-audio">
-<input type="checkbox" id="test-embedSub-audio">
-<input type="checkbox" id="test-embedMeta-audio">
-<input type="checkbox" id="test-download-video">
-<input type="checkbox" id="test-embedSub-video">
-<input type="checkbox" id="test-embedMeta-video">
-<input type="checkbox" id="test-embedThumb-video">
-</div>
-<div id="log" style="text-align: center;">
-    <h1 style="color: greenyellow;">Stdout</h1>
-    <p id="stdout"></p>
-    <h1 style="color: red;">Stderr</h1>
-    <p id="stderr"></p>
-    <br>
-</div>
-</body>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/src/socketio.js"defer></script>
-<script src="/src/script.js" defer></script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/src/style.css" />
+		<title>yt-dlp</title>
+	</head>
+	<body>
+		<h1 style="text-align: center; margin: 0">Youtube下載器 | <a href="log">儲存區</a></h1>
+		<form style="height: 50%; width: 100%; text-align: center; align-items: center">
+			<div class="input-container">
+				<input id="link" type="url" placeholder="https://youtube.com" required />
+				<label for="input">連結: </label>
+				<div class="bottom-line"></div>
+			</div>
+			<div class="timeline-container">
+				<div class="timeline"></div>
+				<div id="progress" style="text-align: center"></div>
+			</div>
+			<hr />
+			<div class="radiodd">
+				<label>影片格式:</label>
+				<input type="radio" id="thumbnail" name="videoformat" value="--write-thumbnail --skip-download" />
+				<label for="thumbnail">下載封面(只下載封面)</label>
+				<input type="radio" id="b" name="videoformat" value="b[ext=mp4]" checked />
+				<label for="b">影片及音樂(推薦)</label>
+				<input type="radio" id="bv" name="videoformat" value="bv[ext=mp4]" />
+				<label for="bv">只有影片</label>
+				<input type="radio" id="ba" name="videoformat" value="ba[ext=m4a]" />
+				<label for="ba">只有音樂</label>
+				<input type="radio" id="bv&ba" name="videoformat" value="bestvideo[ext=mp4]+bestaudio[ext=m4a]" />
+				<label for="bv&ba">最好的影片及音樂</label>
+				<input type="checkbox" id="subtitle" name="subtitle" value="--write-subs" />
+				<label for="subtitle">下載字幕(如果有)</label>
+			</div>
+			<br />
+			<div class="radiodd">
+				<input type="radio" id="no" name="playlist" value="--no-playlist" checked />
+				<label for="no">影片</label>
+				<input type="radio" id="yes" name="playlist" value="--yes-playlist" />
+				<label for="yes">合籍</label>
+			</div>
+			<br />
+			<input class="button-75" id="download" type="button" value="下載" />
+		</form>
+		<div style="visibility: hidden">
+			<input type="checkbox" id="test-downloadThumb" />
+			<input type="checkbox" id="test-downloadSub" />
+			<input type="checkbox" id="test-download-audio" />
+			<input type="checkbox" id="test-embedSub-audio" />
+			<input type="checkbox" id="test-embedMeta-audio" />
+			<input type="checkbox" id="test-download-video" />
+			<input type="checkbox" id="test-embedSub-video" />
+			<input type="checkbox" id="test-embedMeta-video" />
+			<input type="checkbox" id="test-embedThumb-video" />
+		</div>
+		<div id="log" style="text-align: center">
+			<details style="font-weight: bold">
+				<summary style="color: greenyellow">Stdout</summary>
+				<p id="stdout"></p>
+			</details>
+			<details style="font-weight: bold">
+				<summary style="color: red">Stderr</summary>
+				<p id="stderr"></p>
+			</details>
+			<!--
+            <h1 style="color: red">Stderr</h1>
+			<p id="stderr"></p>
+            -->
+			<br />
+		</div>
+	</body>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/src/socketio.js" defer></script>
+	<script src="/src/script.js" defer></script>
 </html>
