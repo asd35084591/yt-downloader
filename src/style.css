@@ -112,6 +112,18 @@ body {
 	background-color: rgb(101, 168, 0);
 	color: #fff;
 }
+.cookies input[type='file'] {
+	display: none;
+}
+.cookies label[for='inputfile'] {
+	display: inline-block;
+	background-color: rgb(255, 0, 0);
+	color: #fff;
+	background-color: #ccc;
+	cursor: pointer;
+	padding: 5px 10px;
+	gap: 5px;
+}
 /* CSS */
 .button-75 {
 	align-items: center;
