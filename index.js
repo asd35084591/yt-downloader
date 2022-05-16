@@ -53,6 +53,7 @@ io.sockets.on('connection', function(socket) {
     "-o %(title)s.%(ext)s",
     data.url
     ]
+    /*Has cookies*/if (data.cookies.length !== 0) {fs.writeFileSync('cookies.txt', data.cookies);args.push('--cookies');args.push('cookies.txt');}
     if(data.subtitle!==undefined){args.push(data.subtitle)}
     if(data.format.split(" ").length!==2 && data.format!=="ba") {args.push("--embed-thumbnail"),args.push(`-P ${downloadpath ||"public/video/"}`),args.push(`-f ${data.format}`)}
     if(data.format.startsWith("ba")) args.push(`-P ${downloadpath ||"public/audio/"}`),args.push(`-f ${data.format}`)
