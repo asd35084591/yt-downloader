@@ -11,7 +11,7 @@ const appenddata = (data) => {
 	let stdouttext = document.createTextNode(mdtext);
 	document.getElementById('stdout').append(stdouttext, document.createElement('br'));
 	stdout.style.backgroundColor = 'green';
-	if (data?.stdout2.split('%')[0] != data?.stdout2) {
+	if (data?.stdout2?.split('%')[0] != data?.stdout2) {
 		handleTimelineUpdate(data.stdout2.split('%')[0] + '%');//Progress bar
 		document.getElementById('progress').innerText = `${data.stdout2.split('%')[0] + '%'}`;
 	}
