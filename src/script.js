@@ -46,6 +46,7 @@ const sendreq = (io = 'geturl') => {
 		format: videoformat,
 		list: playlistvideo,
 		subtitle: subtitle,
+		cookies: document.getElementById('output').textContent,
 	});
 	document.getElementById('stdout').innerHTML = '';
 	document.getElementById('stderr').innerHTML = '';
@@ -67,6 +68,14 @@ function debounce(cb, delay = 1000) {
 		}, delay);
 	};
 }
+document.getElementById('inputfile').addEventListener('change', function () {
+	var fr = new FileReader();
+	fr.onload = function () {
+		document.getElementById('output').textContent = fr.result;
+	};
+
+	fr.readAsText(this.files[0]);
+});
 document.getElementById('download').addEventListener('click', debounce(reqdeb));
 function reqdeb() {
 	console.log('send');
