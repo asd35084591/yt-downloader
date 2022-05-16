@@ -17,7 +17,5 @@
     "yt-dlp-wrap": "^2.3.11"
   },
   "devDependencies": {
-    //"cypress": "^9.5.3",
-    "nodemon": "^2.0.15"
   }
 }
