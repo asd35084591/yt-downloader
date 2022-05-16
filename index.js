@@ -9,11 +9,7 @@ const open = require('open');
 const io = require('socket.io')(server)
 require('dotenv').config();
 fs.access(process.env.ytdlp_path || (os.platform()==="linux"?"yt-dlp":"yt-dlp.exe"), fs.F_OK, async(err) => {
-    if (err) {
-      //console.error(err)
-      await YTDlpWrap.downloadFromGithub();
-      return
-    }
+    if (err) {await YTDlpWrap.downloadFromGithub();return}
     //file exists
   })
 const yt_dlp = process.env.ytdlp_path || (os.platform()==="linux"?"./yt-dlp":"./yt-dlp.exe")
